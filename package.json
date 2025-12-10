@@ -1,7 +1,7 @@
 {
-    "name": "ghost-simple-theme",
-    "description": "A simple theme for Ghost theme development",
-    "demo": "https://starter.ghost.io",
+    "name": "simple",
+    "description": "A ghost theme",
+    "demo": "https://simple.hs-labs.com",
     "version": "1.0.0",
     "engines": {
         "ghost": ">=5.0.0"
@@ -36,10 +36,9 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/TryGhost/Starter.git"
+        "url": "https://github.com/saintshen/ghost-simple.git"
     },
-    "bugs": "https://github.com/TryGhost/Starter/issues",
-    "contributors": "https://github.com/TryGhost/Starter/graphs/contributors",
+    "bugs": "https://github.com/saintshen/ghost-simple/issues",
     "devDependencies": {
         "@babel/core": "^7.21.0",
         "@babel/preset-env": "^7.20.2",
@@ -48,12 +47,14 @@
         "@rollup/plugin-node-resolve": "^15.0.1",
         "@rollup/plugin-terser": "^0.4.0",
         "bestzip": "^2.2.1",
+        "photoswipe": "^5.4.4",
         "postcss": "^8.4.24",
         "postcss-import": "^15.1.0",
         "postcss-preset-env": "^8.0.1",
         "rollup": "^3.18.0",
         "rollup-plugin-livereload": "^2.0.5",
-        "rollup-plugin-postcss": "^4.0.2"
+        "rollup-plugin-postcss": "^4.0.2",
+        "swiper": "^12.0.3"
     },
     "browserslist": [
         "defaults"
@@ -80,11 +81,19 @@
             "xl": {
                 "width": 2000
             }
+        },
+        "custom": {
+            "navigation_layout": {
+                "type": "select",
+                "options": [
+                    "Fixed",
+                    "Sticky",
+                    "Stacked"
+                ],
+                "default": "Fixed"
+            }
         }
     },
     "type": "module",
-    "dependencies": {
-        "@glidejs/glide": "^3.7.1",
-        "swiper": "^12.0.3"
-    }
+    "dependencies": {}
 }

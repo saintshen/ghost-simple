@@ -6,6 +6,7 @@ import "../css/index.css";
 // Import JS
 import menuOpen from "./menuOpen";
 import infiniteScroll from "./infiniteScroll";
+import lightboxInit from "./lightbox";
 // import Swiper JS
 import Swiper from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
@@ -14,9 +15,11 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+
 // Call the menu and infinite scroll functions
-// menuOpen();
+menuOpen();
 infiniteScroll();
+lightboxInit();
 
 const swiper = new Swiper('.swiper',{
     modules: [Navigation, Pagination],

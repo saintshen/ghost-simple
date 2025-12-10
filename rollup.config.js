@@ -27,7 +27,8 @@ export default defineConfig({
         dir: "assets/built",
         sourcemap: true,
         format: 'iife',
-        plugins: [terser()]
+        plugins: [terser()],
+        inlineDynamicImports: true
     },
     plugins: [
         commonjs(), 
