@@ -1,62 +1,29 @@
-import PhotoSwipeLightbox from 'photoswipe/lightbox';
-import PhotoSwipe from 'photoswipe';
-import 'photoswipe/style.css';
+import './lib/fslightbox.js';
 
 export default function lightboxInit() {
-    const options = {
-        dataSource: [],
-        showHideAnimationType: 'fade',
-        mouseMovePan: true,
-        initialZoomLevel: 'fit',
-        secondaryZoomLevel: 1,
-        maxZoomLevel: 2,
-        pswpModule: PhotoSwipe
-    };
 
-    var items = document.querySelectorAll('.kg-image-card');
-    items.forEach(function(item) {
-        var img = item.querySelector('img');
-        var caption = item.querySelector('figcaption');
-        if(img) {
-            options.dataSource.push({
-                src: img.getAttribute('src'),
-                width: img.width,
-                height: img.height,
-                alt: img.getAttribute('alt') || '',
-                caption: caption ? caption.innerHTML : ''
+    document.querySelectorAll('.kg-image-card').forEach(card => {
+        const lightbox = new FsLightbox();
+        lightbox.props.sources = [card.querySelector('img').src];
+        lightbox.props.captions = [card.querySelector('img').alt || card.querySelector('figcaption span')?.innerText || ''];
+        card.querySelector('img').style.cursor = 'pointer';
+        card.querySelector('img').addEventListener('click', () => {
+            lightbox.open(0);
+        });
+        card.style.display = 'inline-block';
+    });
+    document.querySelectorAll('.kg-gallery-card').forEach((card, index) => {
+        const lightbox = new FsLightbox();
+        const images = card.querySelectorAll('img');
+        lightbox.props.sources = Array.from(images).map(img => img.src);
+        lightbox.props.captions = Array.from(images).map(img => img.alt || '');
+        lightbox.props.showThumbsOnMount = true;
+        images.forEach((img, imgIndex) => {
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', () => {
+                lightbox.open(imgIndex);
             });
-        }
-    });
-    
-    const lightbox = new PhotoSwipeLightbox(options);
-    lightbox.on('uiRegister', function() {
-        lightbox.pswp.ui.registerElement({
-            name: 'custom-caption',
-            order: 9,
-            isButton: false,
-            appendTo: 'root',
-            html: 'Caption text',
-            onInit: (el, pswp) => {
-                lightbox.pswp.on('change', () => {
-                    const currSlideElement = lightbox.pswp.currSlide.data.caption;
-                    let captionHTML = '';
-                    if (currSlideElement) {
-                        captionHTML = currSlideElement;
-                    } else {
-                        // get caption from alt attribute
-                        captionHTML = lightbox.pswp.currSlide.data.alt;
-                    }
-                    el.innerHTML = captionHTML || '';
-                });
-            }
         });
-    });
-    lightbox.init();
-
-    document.querySelectorAll('.kg-image-card img').forEach((img, index) => {
-        img.addEventListener('click', (event) => {
-            event.preventDefault();
-            lightbox.loadAndOpen(index);
-        });
+        card.style.display = 'inline-block';
     });
 }
