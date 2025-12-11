@@ -10,7 +10,7 @@
     {{ghost_head}}
 </head>
 
-<body class="{{body_class}}">
+<body class="{{body_class}}{{#match @custom.typography "Elegant serif"}} has-serif-font{{/match}}{{#match @custom.typography "Consistent mono"}} has-mono-font{{/match}}">
 <div class="gh-viewport">
     <header id="gh-head" class="gh-head{{#match @custom.navigation_layout "Stacked"}} gh-head-stacked{{/match}}">
         <div class="gh-head-inner gh-container">
