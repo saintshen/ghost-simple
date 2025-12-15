@@ -22,7 +22,7 @@ import livereload from 'rollup-plugin-livereload';
 
 // Rollup configuration
 export default defineConfig({
-    input: 'assets/js/index.js',
+    input: 'assets/js/simple.js',
     output: {
         dir: "assets/built",
         sourcemap: true,
@@ -39,7 +39,12 @@ export default defineConfig({
             sourceMap: true,
             plugins: [
                 atImport(),
-                postcssPresetEnv({})
+                postcssPresetEnv({
+                    stage: 1,
+                    features: {
+                        'is-pseudo-class': true
+                    }
+                })
             ], 
             minimize: true,
         }),

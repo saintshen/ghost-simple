@@ -1,23 +1,16 @@
-# Ghost Starter Theme
+# Simple Theme
 
-A starter framework for Ghost themes! Click **Use this template** to create a copy of this repo for everything you need to get started developing a custom Ghost theme.
+A Ghost themes.
 
-&nbsp;
 
-## First time using a Ghost theme?
+## Why Simple Ghost theme?
 
-Ghost uses a simple templating language called [Handlebars](http://handlebarsjs.com/) for its themes.
-
-We've documented this starter theme pretty heavily so that it should be possible to work out what's going on just by reading the code and the comments. We also have a robust set of resources to help you build awesome custom themes:
-
-- The official [theme documentation](https://ghost.org/docs/themes) is the complete resource for everything you need to know about Ghost theme development
-- [Tutorials](https://ghost.org/tutorials/) offer a step-by-step guide to building the most common features in Ghost themes
-- The [Ghost VS Code extension](https://marketplace.visualstudio.com/items?itemName=TryGhost.ghost) speeds up theme development and provides quick access to helpful info
-- All of Ghost's official themes are [open source](https://github.com/tryghost) and are a great reference for learning how to create a theme
+Make life simple.
 
 &nbsp;
 
-## Starter theme features
+## Simple theme features
+- 🎨 Ghost custom fonts
 
 🔁&nbsp;Livereload by default. See changes instantly in the browser whenever you save a file.
 

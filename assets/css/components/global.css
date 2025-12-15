@@ -16,8 +16,8 @@ body {
     min-height: 100vh;
     margin: 0;
     padding: 0;
-    color: var(--color-primary);
-    font-family: var(--font-sans-serif);
+    color: #464646;
+    font-family: var(--gh-font-body, var(--font-sans-serif));
     font-size: 1.5rem;
     line-height: 1.6em;
     font-weight: 400;
@@ -126,12 +126,13 @@ a:not([class]) {
 }
 
 a[class] {
-    color: inherit;
+    color: #7e8181;
     text-decoration: none;
-    transition: 0.4s ease;
+    transition: 0.4s ease-in-out;
 }
 
 a[class]:hover {
+    color: #888;
     transition: 0.2s ease;
 }
 
@@ -144,6 +145,7 @@ h6 {
     margin: 0;
     line-height: 1.15em;
     font-weight: 700;
+    font-family: var(--gh-font-heading, var(--font-sans-serif));
 }
 
 h1 {

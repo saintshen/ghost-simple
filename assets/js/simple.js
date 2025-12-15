@@ -4,7 +4,7 @@
 import "../css/index.css";
 
 // Import JS
-import menuOpen from "./menuOpen";
+import navigationInit from "./navigation";
 import infiniteScroll from "./infiniteScroll";
 import lightboxInit from "./lightbox";
 
@@ -18,8 +18,8 @@ import 'swiper/css/pagination';
 
 
 // Call the menu and infinite scroll functions
-menuOpen();
-infiniteScroll();
+navigationInit();
+// infiniteScroll();
 lightboxInit();
 
 
