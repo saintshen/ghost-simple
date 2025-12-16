@@ -1,55 +1,23 @@
 {{!< default}}
 
-<div classs="content-outer-wrapper">
-    <div class="overlay-nav-wrapper">
-        <div class="overlay-nav-inner-wrapper">
-            <nav class="main-navigation--overlay">
-                {{navigation}}
-            </nav>
-            <nav class="secondary-navigation--overlay">
-                {{navigation type="secondary"}}
-            </nav>
-        </div>
-    </div>
-    <header class="site-header show">
-        <div class="site-branding" data-content-field="site-title">
-            <h1 class="site-title">
-                <a href="{{@site.url}}">
-                    {{#if @site.logo}}
-                    <img src="{{@site.logo}}" alt="{{@site.title}}" />
-                    {{else}}
-                    <span class="site-title">{{@site.title}}</span>
-                    {{/if}}
-                </a>
-            </h1>
-        </div>
-        {{> "navToggle"}}
-        <div class="navigation-wrapper">
-            <nav class="main-navigation" role="navigation" aria-label="Main Navigation">
-                {{navigation}}
-            </nav>
-            <nav class="secondary-navigation" role="navigation" aria-label="Secondary Navigation">
-                {{navigation type="secondary"}}
-            </nav>
-    </header>
-    <main id="mainContent" class="main-content">
+<main id="mainContent" class="main-content">
         <div class="main-content-inner-wrapper">
             <div class="index-gallery-wrapper">
-                {{#get "tags"}}
+                {{#get "posts"}}
                 <div class="collection-images">
-                    {{#foreach tags}}
+                    {{#foreach posts}}
                     <div class="image-container content-fill{{#if @first}} active{{/if}}" data-url-id="{{slug}}">
                         <img src="{{#if feature_image}}{{img_url feature_image}}{{else}}{{@site.cover_image}}{{/if}}"
                             alt="{{name}}" />
                     </div>
                     {{/foreach}}
                 </div>
-                <div class="collection-nav-desc-wrapper show">
+                <div class="collection-nav-desc-wrapper">
                     <nav class="index-navigation collection-nav" role="navigation">
-                        {{#foreach tags}}
+                        {{#foreach posts}}
                         <div class="collection-nav-item{{#if @first}} active{{/if}}" data-url-id="{{slug}}">
                             <a href="{{url}}">
-                                <span class="collection-nav-item-span">{{name}}</span>
+                                <span class="collection-nav-item-span">{{title}}</span>
                             </a>
                         </div>
                         {{/foreach}}
@@ -59,4 +27,3 @@
             </div>
         </div>
     </main>
-</div>

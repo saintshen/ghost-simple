@@ -14,9 +14,30 @@
 
 <body class="{{body_class}}">
 <div class="gh-viewport">
-    
-    {{{body}}}
-    </div> 
+    <div classs="content-outer-wrapper">
+        <header class="site-header">
+            <div class="site-branding" data-content-field="site-title">
+                <h1 class="site-title">
+                    <a href="{{@site.url}}">
+                        {{#if @site.logo}}
+                        <img src="{{@site.logo}}" alt="{{@site.title}}" />
+                        {{else}}
+                        <span class="site-title">{{@site.title}}</span>
+                        {{/if}}
+                    </a>
+                </h1>
+            </div>
+            {{> "navToggle"}}
+            <div class="navigation-wrapper">
+                <nav class="main-navigation" role="navigation" aria-label="Main Navigation">
+                    {{navigation}}
+                </nav>
+                <nav class="secondary-navigation" role="navigation" aria-label="Secondary Navigation">
+                    {{navigation type="secondary"}}
+                </nav>
+        </header>
+        {{{body}}}
+    </div>
 </div>
     
 <script src="{{asset "built/simple.js"}}"></script>

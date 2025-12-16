@@ -27,5 +27,28 @@ export default function navigationInit() {
             });
         });
     });
-}
 
+    document.addEventListener('DOMContentLoaded', function () {
+        const header = document.querySelector('header');
+        let lastScrollY = window.scrollY;
+        const headerHeight = header.offsetHeight;
+
+        function handleScroll() {
+            const currentScrollY = window.scrollY;
+            if (currentScrollY === 0) {
+                header.classList.remove('header-hidden');
+            }
+            else if (currentScrollY > lastScrollY && currentScrollY > headerHeight) {
+                // Scrolling down
+                header.classList.add('header-hidden');
+            } else if (currentScrollY < lastScrollY) {
+                // Scrolling up
+                header.classList.remove('header-hidden');
+            }
+            lastScrollY = currentScrollY;
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        handleScroll();
+    });
+}
