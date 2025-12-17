@@ -276,7 +276,6 @@ html,
 .main-content-inner-wrapper {
     position: relative;
     z-index: 15;
-    max-width: 1600px;
     margin-left: auto;
     margin-right: auto;
     padding: 5vw 7vw;
@@ -408,7 +407,7 @@ html,
 @media screen and (min-width: 1920px) {
     .main-navigation li,
     .main-navigation--overlay li {
-        font-size:8px
+        font-size:15px
     }
 }
 
@@ -426,7 +425,7 @@ html,
     text-transform: lowercase;
     font-weight: 300;
     letter-spacing: 0em;
-    font-size: 8px;
+    font-size: 15px;
     font-family: Menlo;
     font-style: normal
 }
@@ -454,7 +453,7 @@ html,
     .main-navigation--overlay a,
     .secondary-navigation a,
     .secondary-navigation--overlay a {
-        font-size:8px
+        font-size:15px
     }
 }
 
@@ -530,17 +529,10 @@ body:not(.mobile-style-nav) .site-header.folder-overflow {
 }
 
 .nav-open .site-header {
-    -webkit-transition: transform 300ms 0ms ease, opacity 300ms 0ms ease, margin 0ms 0ms linear, padding 0ms 0ms linear;
-    -moz-transition: transform 300ms 0ms ease, opacity 300ms 0ms ease, margin 0ms 0ms linear, padding 0ms 0ms linear;
-    -ms-transition: transform 300ms 0ms ease, opacity 300ms 0ms ease, margin 0ms 0ms linear, padding 0ms 0ms linear;
-    -o-transition: transform 300ms 0ms ease, opacity 300ms 0ms ease, margin 0ms 0ms linear, padding 0ms 0ms linear;
-    transition: transform 300ms 0ms ease, opacity 300ms 0ms ease, margin 0ms 0ms linear, padding 0ms 0ms linear
-}
-
-.nav-open:not(.mobile-style-nav) .site-header {
     overflow: visible;
     margin: 0;
-    padding: 3vw
+    padding: 3vw;
+    transition: transform 300ms 0ms ease, opacity 300ms 0ms ease, margin 0ms 0ms linear, padding 0ms 0ms linear
 }
 
 .nav-toggle {
@@ -568,18 +560,11 @@ body:not(.mobile-style-nav) .site-header.folder-overflow {
     }
 }
 
-.nav-open:not(.mobile-style-nav) .site-header .navigation-wrapper {
+.nav-open .site-header .navigation-wrapper {
     max-width: 100%;
     max-height: 100%;
     margin-right: 1vw;
-    -webkit-flex: 0 1 auto;
-    -moz-flex: 0 1 auto;
-    -ms-flex: 0 1 auto;
     flex: 0 1 auto;
-    -webkit-transition: max-width 200ms 0ms ease-in-out, max-height 200ms 0ms ease-in-out, flex-shrink 200ms 0ms ease-in-out, opacity 200ms 200ms ease-in-out, margin 0ms 200ms ease-in-out;
-    -moz-transition: max-width 200ms 0ms ease-in-out, max-height 200ms 0ms ease-in-out, flex-shrink 200ms 0ms ease-in-out, opacity 200ms 200ms ease-in-out, margin 0ms 200ms ease-in-out;
-    -ms-transition: max-width 200ms 0ms ease-in-out, max-height 200ms 0ms ease-in-out, flex-shrink 200ms 0ms ease-in-out, opacity 200ms 200ms ease-in-out, margin 0ms 200ms ease-in-out;
-    -o-transition: max-width 200ms 0ms ease-in-out, max-height 200ms 0ms ease-in-out, flex-shrink 200ms 0ms ease-in-out, opacity 200ms 200ms ease-in-out, margin 0ms 200ms ease-in-out;
     transition: max-width 200ms 0ms ease-in-out, max-height 200ms 0ms ease-in-out, flex-shrink 200ms 0ms ease-in-out, opacity 200ms 200ms ease-in-out, margin 0ms 200ms ease-in-out
 }
 
@@ -791,7 +776,7 @@ body:not(.mobile-style-nav) .site-header.folder-overflow {
     z-index: 1100;
     flex: 0 0 0px;
     order: 2;
-    display: block;
+    display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
@@ -839,7 +824,7 @@ body:not(.mobile-style-nav) .site-header.folder-overflow {
     object-fit: cover;
     opacity: 0;
     z-index: 1;
-    transition: opacity 300ms 0ms ease-in-out
+    transition: opacity 1500ms 0ms ease-in-out
 }
 
 .collection-images .image-container.active img,
@@ -864,6 +849,7 @@ body:not(.mobile-style-nav) .site-header.folder-overflow {
     top: 50%;
     left: 13.5vw;
     opacity: 0;
+    width: calc(100% - 13.5vw);
     transform: translate3d(0,-50%,0);
     transition: opacity 300ms ease
 }
@@ -892,7 +878,7 @@ body:not(.mobile-style-nav) .site-header.folder-overflow {
 
 @media screen and (min-width: 5333px) and (max-width:1920px) {
     .collection-nav-desc-wrapper .collection-nav {
-        font-size:.46875vw
+        font-size:.7vw
     }
 }
 
@@ -904,7 +890,7 @@ body:not(.mobile-style-nav) .site-header.folder-overflow {
 
 @media screen and (min-width: 1920px) {
     .collection-nav-desc-wrapper .collection-nav {
-        font-size:9px
+        font-size:25px
     }
 }
 
@@ -949,7 +935,7 @@ body:not(.mobile-style-nav) .site-header.folder-overflow {
 
 @media screen and (min-width: 1920px) {
     .collection-nav-desc-wrapper .collection-nav a {
-        font-size:9px
+        font-size:16px
     }
 }
 
@@ -982,14 +968,6 @@ body:not(.mobile-style-nav) .site-header.folder-overflow {
     font-style: normal;
 }
 
-.collection-nav-desc-wrapper {
-    width: 100%
-}
-
-.collection-nav-desc-wrapper {
-    width: calc(100% - 13.5vw);
-}
-
 .index-gallery-wrapper {
     position: relative;
     height: 80vh;
@@ -997,7 +975,7 @@ body:not(.mobile-style-nav) .site-header.folder-overflow {
 }
 
 .post-template .site-header {
-    background-color: #a2e9a2;
+    background-color: var(--ghost-accent-color, #999);
     color: white;
     padding: 5px 20px;
     margin: 0;
@@ -1009,6 +987,7 @@ body:not(.mobile-style-nav) .site-header.folder-overflow {
     z-index: 1000;
     transition: top 0.3s ease-out;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    display: inline-flex;
 }
 
 .post-template .site-header h1 {
@@ -1019,7 +998,7 @@ body:not(.mobile-style-nav) .site-header.folder-overflow {
 }
 
 .post-template .site-header .nav-toggle svg {
-    stroke: #727272
+    stroke: white;
 }
 
 .post-template .site-header a {
@@ -1041,3 +1020,6 @@ body:not(.mobile-style-nav) .site-header.folder-overflow {
     top: -80px;
 }
 
+.post-template.nav-open .site-header {
+    padding: 5px 20px;
+}
