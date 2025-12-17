@@ -327,6 +327,10 @@ html,
     align-items: center
 }
 
+.secondary-navigation {
+    padding: 0 0 0 1vw;
+}
+
 .main-navigation ul,
 .secondary-navigation ul {
     margin: 0;
