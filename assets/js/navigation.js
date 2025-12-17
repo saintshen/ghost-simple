@@ -50,5 +50,11 @@ export default function navigationInit() {
 
         window.addEventListener('scroll', handleScroll);
         handleScroll();
+        setTimeout(function() {
+            header.classList.add('show');
+            document.querySelector('.collection-nav-desc-wrapper').classList.add('show');
+        }, 800);
+
+        
     });
 }

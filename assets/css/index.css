@@ -495,12 +495,16 @@ html,
     left: 0;
     margin: 0 3vw;
     padding: 3vw 0;
-    opacity: 1;
+    opacity: 0;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
     transition: transform 300ms 0ms ease, opacity 300ms 150ms ease, margin 0ms 200ms linear, padding 0ms 200ms linear
+}
+
+.site-header.show {
+    opacity: 1;
 }
 
 body:not(.mobile-style-nav) .site-header {
@@ -859,9 +863,13 @@ body:not(.mobile-style-nav) .site-header.folder-overflow {
     position: absolute;
     top: 50%;
     left: 13.5vw;
-    opacity: 1;
+    opacity: 0;
     transform: translate3d(0,-50%,0);
     transition: opacity 300ms ease
+}
+
+.collection-nav-desc-wrapper.show {
+    opacity: 1
 }
 
 
@@ -907,7 +915,9 @@ body:not(.mobile-style-nav) .site-header.folder-overflow {
 
 .collection-nav-desc-wrapper .collection-nav a {
     color: #fcfcfc;
-    margin-right: .6vw;
+    display: block;
+    margin: 0;
+    padding: .2vw 0;
     position: relative;
     pointer-events: auto;
     font-size: 72px;
@@ -969,7 +979,7 @@ body:not(.mobile-style-nav) .site-header.folder-overflow {
     line-height: 1.2em;
     text-transform: uppercase;
     font-family: Inter;
-    font-style: normal
+    font-style: normal;
 }
 
 .collection-nav-desc-wrapper {
