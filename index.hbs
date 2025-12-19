@@ -1,7 +1,7 @@
 {{!< default}}
 
-<main id="mainContent" class="main-content">
-        <div class="main-content-inner-wrapper">
+<main class="gh-page">
+        <div class="gh-container">
             <div class="index-gallery-wrapper">
                 {{#get "posts"}}
                 <div class="collection-images">
@@ -12,8 +12,8 @@
                     </div>
                     {{/foreach}}
                 </div>
-                <div class="collection-nav-desc-wrapper">
-                    <nav class="index-navigation collection-nav" role="navigation">
+                <div class="collection-nav-wrapper">
+                    <nav class="collection-nav">
                         {{#foreach posts}}
                         <div class="collection-nav-item{{#if @first}} active{{/if}}" data-url-id="{{slug}}">
                             <a href="{{url}}">

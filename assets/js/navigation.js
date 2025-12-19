@@ -1,9 +1,9 @@
 // Toggle the menu open and close when on mobile
 export default function navigationInit() {
-    const burgerButton = document.querySelector('.nav-toggle');
-    burgerButton.addEventListener('click', function () {
-        document.body.classList.toggle('nav-open');
-    });
+    // const burgerButton = document.querySelector('.nav-toggle');
+    // burgerButton.addEventListener('click', function () {
+    //     document.body.classList.toggle('nav-open');
+    // });
 
     const navItems = document.querySelectorAll('.collection-nav .collection-nav-item a');
     const imageContainers = document.querySelectorAll('.collection-images .image-container');
@@ -28,8 +28,14 @@ export default function navigationInit() {
         });
     });
 
+    // Toggle the menu open and close
+    const burgerButton = document.querySelector('.gh-burger');
+    burgerButton.addEventListener('click', function () {
+        document.body.classList.toggle('gh-menu-open');
+    });
+
     document.addEventListener('DOMContentLoaded', function () {
-        const header = document.querySelector('header');
+        const header = document.querySelector('.gh-head');
         let lastScrollY = window.scrollY;
         const headerHeight = header.offsetHeight;
 
@@ -52,7 +58,7 @@ export default function navigationInit() {
         handleScroll();
         setTimeout(function() {
             header.classList.add('show');
-            document.querySelector('.collection-nav-desc-wrapper').classList.add('show');
+            document.querySelector('.collection-nav-wrapper').classList.add('show');
         }, 800);
 
         
