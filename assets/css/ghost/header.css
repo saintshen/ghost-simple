@@ -63,7 +63,7 @@
 .gh-head-menu {
     display: flex;
     align-items: center;
-    margin-left: 30vw;
+    margin-left: auto;
 }
 
 .gh-head-menu .nav {
@@ -199,6 +199,9 @@ body:not(.gh-menu-open) .gh-burger:hover .gh-burger-inner::after {
     transform: translatex(6px) rotate(-135deg);
 }
 
+.gh-menu-open .gh-burger {
+    margin-left: 1vmin;
+}
 .gh-menu-open #gh-head {
     z-index: 900;
     overflow-y: none;
@@ -217,6 +220,11 @@ body:not(.gh-menu-open) .gh-burger:hover .gh-burger-inner::after {
 
 /* Layout Variants
 /* ---------------------------------------------------------- */
+
+.gh-head .gh-container {
+    margin-left: auto;
+    display: inline-flex;
+}
 
 .gh-head-brandnavactions .gh-head-brand {
     grid-column-start: 1;

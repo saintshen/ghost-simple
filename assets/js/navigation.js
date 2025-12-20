@@ -56,11 +56,13 @@ export default function navigationInit() {
 
         window.addEventListener('scroll', handleScroll);
         handleScroll();
-        setTimeout(function() {
-            header.classList.add('show');
-            document.querySelector('.collection-nav-wrapper').classList.add('show');
-        }, 800);
-
+        
+        header.classList.add('show');
+        const navWrapper = document.querySelector('.collection-nav-wrapper');
+        if (navWrapper) {
+            navWrapper.classList.add('show');
+        }
+    
         
     });
 }

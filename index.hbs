@@ -2,28 +2,6 @@
 
 <main class="gh-page">
         <div class="gh-container">
-            <div class="index-gallery-wrapper">
-                {{#get "posts"}}
-                <div class="collection-images">
-                    {{#foreach posts}}
-                    <div class="image-container content-fill{{#if @first}} active{{/if}}" data-url-id="{{slug}}">
-                        <img src="{{#if feature_image}}{{img_url feature_image}}{{else}}{{@site.cover_image}}{{/if}}"
-                            alt="{{name}}" />
-                    </div>
-                    {{/foreach}}
-                </div>
-                <div class="collection-nav-wrapper">
-                    <nav class="collection-nav">
-                        {{#foreach posts}}
-                        <div class="collection-nav-item{{#if @first}} active{{/if}}" data-url-id="{{slug}}">
-                            <a href="{{url}}">
-                                <span class="collection-nav-item-span">{{title}}</span>
-                            </a>
-                        </div>
-                        {{/foreach}}
-                    </nav>
-                </div>
-                {{/get}}
-            </div>
+            {{> "index-gallery"}}
         </div>
     </main>
