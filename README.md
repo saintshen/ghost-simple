@@ -113,6 +113,10 @@ npm run test
 
 
 
+## Cookie notice
+
+This theme includes a basic cookie notice partial (`partials/cookie-notice.hbs`), styles (`assets/css/components/cookie.css`), and script (`assets/js/cookie-notice.js`). Analytics loading is deferred and only executes after the user accepts cookies — update the ID or provider inside the `window.loadDeferredAnalytics` function in `default.hbs` (replace `UA-XXXXX-Y`). The consent is stored in the `cookie_consent` cookie (values: `accepted` / `declined`). Extend the UI and logging as needed for legal compliance.
+
 ## Copyright & License
 
 Copyright (c) 2013-2025 Ghost Foundation - Released under the [MIT license](LICENSE).

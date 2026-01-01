@@ -70,6 +70,18 @@
 <script src="{{asset "built/simple.js"}}"></script>
 {{ghost_foot}}
 
+{{> "cookie-notice"}}
+
+<script>
+/* Deferred analytics loader: replace UA-XXXXX-Y with your ID or change to your provider */
+(function() {
+  function getCookie(name){ var m=document.cookie.match('(^|;)\\s*'+name+'\\s*=\\s*([^;]+)'); return m?decodeURIComponent(m[2]):null; }
+  if (getCookie('cookie_consent') === 'accepted') {
+    // Load Google AdSense
+  }
+})();
+</script>
+
 </body>
 
 </html>

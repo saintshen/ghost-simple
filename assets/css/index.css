@@ -2,6 +2,7 @@
 @import "components/global.css";
 @import "components/forms.css";
 @import "components/buttons.css";
+@import "components/cookie.css";
 
 /* Ghost components */
 @import "ghost/header.css";
