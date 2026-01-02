@@ -67,11 +67,20 @@
             Written by {{#foreach authors}}<a href="{{url}}">{{name}}</a>{{/foreach}}
         </div>
 
-        {{#if comments}}
-        <section class="gh-post-comments">
-            {{comments}}
-        </section>
-        {{/if}}
+        <div id="disqus_thread"></div>
+        <script>
+            var disqus_config = function () {
+            this.page.url = "{{url}}";  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = "ghost-{{comment_id}}"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+            
+            (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://hs-labs-com.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+            })();
+        </script>
 
     </footer>
 
@@ -89,5 +98,5 @@
         </div>
     </div>
 </aside>
-
+<script id="dsq-count-scr" src="//hs-labs-com.disqus.com/count.js" async></script>
 {{/post}}
