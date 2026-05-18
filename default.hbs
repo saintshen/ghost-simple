@@ -12,6 +12,39 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/brands.min.css" integrity="sha512-DJLNx+VLY4aEiEQFjiawXaiceujj5GA7lIY8CHCIGQCBPfsEG0nGz1edb4Jvw1LR7q031zS5PpPqFuPA8ihlRA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     {{ghost_head}}
+<style>
+    :where(.nav, .gh-head-menu) .nav-linkedin a,
+    :where(.nav, .gh-head-menu) .nav-wechat a,
+    :where(.nav, .gh-head-menu) .nav-instagram a {
+        font-size: 0 !important;
+    }
+
+    :where(.nav, .gh-head-menu) .nav-linkedin a::before,
+    :where(.nav, .gh-head-menu) .nav-wechat a::before,
+    :where(.nav, .gh-head-menu) .nav-instagram a::before {
+        font-family: "Font Awesome 6 Brands";
+        display: inline-block;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    :where(.nav, .gh-head-menu) .nav-linkedin a::before {content: "\f08c"}
+    :where(.nav, .gh-head-menu) .nav-instagram a::before {content: "\f16d"}
+    :where(.nav, .gh-head-menu) .nav-wechat a::before {content: "\f1d7"}
+
+    /* Menu items:统一的文字样式 */
+    .gh-head-actions-list a {
+        display: inline-block;
+        padding: 5px 0;
+        margin: 0 0 0 1.5vmin;
+        text-decoration: none;
+        color: inherit;
+    }
+</style>
 </head>
 
 <body class="{{body_class}}">
@@ -25,19 +58,20 @@
                     {{@site.title}}
                 {{/if}}
             </a>
+            
         </div>
-        
+
         <div class="gh-head-menu">
             {{navigation}}
         </div>
         <div class="gh-head-actions">
             <div class="gh-head-actions-list">
-                {{search}}
+                <a href="/search/">Search</a>
                 {{#if @site.members_enabled}}
                     {{^if @member}}
-                    <a class="gh-button" href="{{@site.signup_url}}">Subscribe</a>
+                    <a href="{{@site.signup_url}}">Subscribe</a>
                     {{else}}
-                    <a class="gh-button" href="#/portal/account">Account</a>
+                    <a href="#/portal/account">Account</a>
                     {{/if}}
                 {{/if}}
             </div>
@@ -47,7 +81,7 @@
                 <div class="gh-burger-inner"></div>
             </div>
         </a>
-    
+
     </header>
 
     <main class="gh-main">
@@ -68,6 +102,10 @@
 </div>
 
 <script src="{{asset "built/simple.js"}}"></script>
+<script>
+window.GHOST_API_KEY = '103e0734bdfde4bf80e37fc477';
+window.GHOST_URL = '{{@site.url}}';
+</script>
 {{ghost_foot}}
 
 {{> "cookie-notice"}}

@@ -8,37 +8,20 @@ import navigationInit from "./navigation";
 import infiniteScroll from "./infiniteScroll";
 import lightboxInit from "./lightbox";
 
-// import Swiper JS
+// Swiper is imported here and made available globally for inline template scripts
 import Swiper from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
-// import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+
+// Expose for inline template scripts that run after DOMContentLoaded
+window.Swiper = Swiper;
+window.Navigation = Navigation;
+window.Pagination = Pagination;
 
 
 // Call the menu and infinite scroll functions
 navigationInit();
 // infiniteScroll();
 lightboxInit();
-
-
-const swiper = new Swiper('.swiper',{
-    modules: [Navigation, Pagination],
-    direction: 'horizontal',
-    loop: true,
-
-    pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-    },
-    
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
-
-    scrollbar: {
-        el: '.swiper-scrollbar',
-    },
-});

@@ -1,23 +1,458 @@
+{{!--
+  Index Gallery — Minimal full-screen post showcase
+  Full-bleed featured image, title overlay, minimal header
+--}}
 <div class="index-gallery-wrapper">
-    {{#get "posts"}}
-    <div class="collection-images">
-        {{#foreach posts limit="10"}}
-        <div class="image-container content-fill{{#if @first}} active{{/if}}" data-url-id="{{slug}}">
-            <img src="{{#if feature_image}}{{img_url feature_image}}{{else}}{{@site.cover_image}}{{/if}}"
-                alt="{{name}}" />
-        </div>
-        {{/foreach}}
-    </div>
-    <div class="collection-nav-wrapper">
-        <nav class="collection-nav">
-            {{#foreach posts limit="10"}}
-            <div class="collection-nav-item{{#if @first}} active{{/if}}" data-url-id="{{slug}}">
-                <a href="{{url}}">
-                    <span class="collection-nav-item-span">{{title}}</span>
-                </a>
+    {{#get "posts" limit="10"}}
+    {{#if posts}}
+
+    {{!-- Main Swiper — full-screen image carousel --}}
+    <div class="swiper index-main-swiper">
+        <div class="swiper-wrapper">
+            {{#foreach posts}}
+            <div class="swiper-slide index-main-slide" data-url="{{url}}">
+                <div class="index-main-slide-bg"
+                     style="background-image: url('{{#if feature_image}}{{img_url feature_image}}{{else}}{{@site.cover_image}}{{/if}}')">
+                </div>
+                <div class="index-main-slide-content">
+                    <a href="{{url}}" class="index-main-slide-link">
+                        <h2 class="index-main-slide-title">{{title}}</h2>
+                        {{#if excerpt}}
+                        <p class="index-main-slide-excerpt">{{excerpt}}</p>
+                        {{/if}}
+                    </a>
+                </div>
+                <div class="index-main-slide-prev" aria-label="Previous slide">
+                    <span class="nav-arrow nav-arrow-prev">‹</span>
+                </div>
+                <div class="index-main-slide-next" aria-label="Next slide">
+                    <span class="nav-arrow nav-arrow-next">›</span>
+                </div>
             </div>
             {{/foreach}}
-        </nav>
+        </div>
+        <div class="swiper-pagination"></div>
     </div>
+
+    {{/if}}
     {{/get}}
 </div>
+
+<style>
+/* Header
+/* ---------------------------------------------------------- */
+
+.home-template .gh-head {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1100;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    outline: none !important;
+}
+
+.gallery-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1200;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 3rem;
+    background: transparent;
+    cursor: default;
+}
+
+.gallery-logo {
+    font-family: var(--gh-font-heading, var(--font-sans-serif));
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    pointer-events: all;
+    cursor: default;
+}
+
+.gallery-burger {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    z-index: 200;
+    pointer-events: all;
+}
+
+.gallery-burger-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 33px;
+    height: 33px;
+}
+
+.gallery-burger-inner {
+    width: 100%;
+    height: 100%;
+}
+
+.gallery-burger-box::before {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    content: '';
+    width: 100%;
+    height: 1px;
+    background: currentcolor;
+    transition: transform 300ms cubic-bezier(.2,.6,.3,1), width 300ms cubic-bezier(.2,.6,.3,1);
+    will-change: transform, width;
+}
+
+.gallery-burger-inner::before,
+.gallery-burger-inner::after {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    content: '';
+    width: 100%;
+    height: 1px;
+    background: currentcolor;
+    transition: transform 250ms cubic-bezier(.2,.7,.3,1), width 250ms cubic-bezier(.2,.7,.3,1);
+    will-change: transform, width;
+}
+
+.gallery-burger-inner::before {
+    transform: translatey(-6px);
+}
+.gallery-burger-inner::after {
+    transform: translatey(6px);
+}
+
+body:not(.gh-menu-open) .gallery-burger:hover .gallery-burger-inner::before {
+    transform: translatey(-8px);
+}
+body:not(.gh-menu-open) .gallery-burger:hover .gallery-burger-inner::after {
+    transform: translatey(8px);
+}
+
+.gh-menu-open .gallery-burger-box::before {
+    width: 0;
+    transform: translatex(19px);
+    transition: transform 200ms cubic-bezier(.2,.7,.3,1), width 200ms cubic-bezier(.2,.7,.3,1);
+}
+
+.gh-menu-open .gallery-burger-inner::before {
+    width: 26px;
+    transform: translatex(6px) rotate(135deg);
+}
+
+.gh-menu-open .gallery-burger-inner::after {
+    width: 26px;
+    transform: translatex(6px) rotate(-135deg);
+}
+
+/* Main Swiper
+/* ---------------------------------------------------------- */
+
+.index-gallery-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.index-main-swiper {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.index-main-slide {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    cursor: default;
+}
+
+.index-main-slide-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 600ms ease;
+}
+
+.index-main-slide:hover .index-main-slide-bg {
+    transform: scale(1.02);
+}
+
+/* Clickable content area — bottom-left, only title+excerpt are links */
+.index-main-slide-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
+    padding: 0 8vw 8vh;
+    z-index: 10;
+    pointer-events: none; /* no full-slide click */
+}
+
+.index-main-slide-link {
+    text-decoration: none;
+    pointer-events: all; /* only title+excerpt are clickable */
+}
+
+.index-main-slide-title {
+    font-family: var(--gh-font-heading, var(--font-sans-serif));
+    font-size: clamp(2.4rem, 5vw, 5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0 0 1rem;
+    color: #fcfcfc;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+    max-width: 900px;
+}
+
+.index-main-slide-excerpt {
+    font-size: clamp(1.2rem, 1.8vw, 1.8rem);
+    opacity: 0.8;
+    margin: 0;
+    max-width: 600px;
+    line-height: 1.4;
+    color: rgba(255,255,255,0.85);
+}
+
+/* Prev/Next navigation zones — hidden until hover */
+.index-main-slide-prev,
+.index-main-slide-next {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 15%;
+    z-index: 20;
+    cursor: pointer;
+    /* Hidden by default */
+    opacity: 0;
+    transition: opacity 200ms;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* Show on hover of the whole slide */
+.index-main-slide:hover .index-main-slide-prev,
+.index-main-slide:hover .index-main-slide-next {
+    opacity: 1;
+}
+
+.index-main-slide-prev {
+    left: 0;
+}
+
+.index-main-slide-next {
+    right: 0;
+}
+
+/* Navigation arrow symbols */
+.nav-arrow {
+    font-size: 4rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1;
+    user-select: none;
+    transition: color 200ms;
+}
+
+.index-main-slide:hover .nav-arrow {
+    color: rgba(255,255,255,0.9);
+}
+
+/* Pagination
+/* ---------------------------------------------------------- */
+
+.index-main-swiper .swiper-pagination {
+    bottom: 3rem;
+}
+
+.index-main-swiper .swiper-pagination-bullet {
+    background: rgba(255,255,255,0.4);
+    width: 6px;
+    height: 6px;
+    opacity: 1;
+}
+
+.index-main-swiper .swiper-pagination-bullet-active {
+    background: #fff;
+    width: 20px;
+    border-radius: 3px;
+}
+
+/* Footer
+/* ---------------------------------------------------------- */
+
+.home-template .gh-foot {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* Responsive
+/* ---------------------------------------------------------- */
+
+@media (max-width: 768px) {
+    .index-main-slide-overlay {
+        padding: 0 5vw 10vh;
+    }
+}
+
+/* Adaptive header tint
+/* ---------------------------------------------------------- */
+
+.txt-dark  { color: #1a1a1a; }
+.txt-dark  a,
+.txt-dark  .gh-head-menu .nav a,
+.txt-dark  .gh-head-actions-list a { color: #1a1a1a; }
+
+.txt-light { color: #ffffff; }
+.txt-light a,
+.txt-light .gh-head-menu .nav a,
+.txt-light .gh-head-actions-list a { color: #ffffff; }
+</style>
+
+<script>
+(function() {
+    function init() {
+        var mainEl = document.querySelector('.index-main-swiper');
+        if (!mainEl) return;
+
+        if (typeof Swiper === 'undefined' || typeof Pagination === 'undefined') {
+            setTimeout(init, 100);
+            return;
+        }
+
+        var mainSwiper = new Swiper(mainEl, {
+            modules: [Pagination],
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            }
+        });
+
+        
+
+        // Menu button: open nav
+        var menuBtn = document.querySelector('.gallery-burger');
+        if (menuBtn) {
+            menuBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                var ghHead = document.getElementById('gh-head');
+                if (ghHead) ghHead.style.removeProperty('display');
+                document.body.classList.add('gh-menu-open');
+            });
+        }
+
+        // Sidebar nav links: do NOT intercept navigation.
+        // Let native anchor behavior work; only prevent outside-click close handler from swallowing taps.
+        var menuNav = document.querySelector('#gh-head .gh-head-menu');
+        if (menuNav) {
+            menuNav.addEventListener('click', function(e) {
+                // Keep clicks inside menu from bubbling to document outside-close handler.
+                e.stopPropagation();
+            }, true);
+            menuNav.addEventListener('pointerup', function(e) {
+                e.stopPropagation();
+            }, true);
+            menuNav.addEventListener('touchend', function(e) {
+                e.stopPropagation();
+            }, { capture: true, passive: true });
+        }
+
+        // Close menu when clicking outside the sidebar
+        document.addEventListener('click', function(e) {
+            if (!document.body.classList.contains('gh-menu-open')) return;
+
+            // Any click inside nav area — do not treat as outside click
+            // (prevents "close-only" when user taps LI/padding instead of exact <a> text)
+            if (e.target.closest('.gh-head-menu')) {
+                return;
+            }
+
+            // Close button — close menu (let default action fire if any)
+
+            // Click outside sidebar — close menu
+            if (!e.target.closest('#gh-head')) {
+                document.body.classList.remove('gh-menu-open');
+            }
+        });
+
+        // Prev/Next slide navigation zones
+        document.querySelectorAll('.index-main-slide-prev').forEach(function(el) {
+            el.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (mainSwiper) mainSwiper.slidePrev();
+            });
+        });
+        document.querySelectorAll('.index-main-slide-next').forEach(function(el) {
+            el.addEventListener('click', function(e) {
+                e.stopPropagation();
+                if (mainSwiper) mainSwiper.slideNext();
+            });
+        });
+
+        // ── Adaptive gallery-header text color ─────────────────────────────────
+        // On dark-bg slides, text is white; on light-bg slides, text is dark.
+        function tintHeaderForSlide() {
+            var activeBg = document.querySelector('.index-main-slide.swiper-slide-active .index-main-slide-bg');
+            if (!activeBg) return;
+            var m = window.getComputedStyle(activeBg).backgroundImage.match(/url\(['"]?(.+?)['"]?\)/);
+            if (!m) return;
+            var img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.onload = function() {
+                try {
+                    var c = Object.assign(document.createElement('canvas'), {width:1, height:1});
+                    var ctx = c.getContext('2d');
+                    ctx.drawImage(img, 0, 0, 1, 1);
+                    var p = ctx.getImageData(0, 0, 1, 1).data;
+                    // Perceptual luminance
+                    var lum = 0.299 * p[0] + 0.587 * p[1] + 0.114 * p[2];
+                    var isLight = lum > 128;
+                    document.querySelectorAll('.gallery-header, #gh-head').forEach(function(el) {
+                        el.classList.toggle('txt-dark',  isLight);
+                        el.classList.toggle('txt-light', !isLight);
+                    });
+                } catch(e) {}
+            };
+            img.src = m[1];
+        }
+
+        mainSwiper.on('slideChangeTransitionEnd', tintHeaderForSlide);
+        tintHeaderForSlide();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();
+</script>

@@ -2,6 +2,10 @@
 /* ---------------------------------------------------------- */
 
 .gh-head {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     z-index: 1100;
     padding: 3vmin 4vmin;
     font-size: 1.6rem;
@@ -13,6 +17,11 @@
 .gh-head.show {
     opacity: 1;
     transition: opacity 400ms ease-in;
+}
+
+/* Home template: always show ghost header */
+.home-template .gh-head {
+    opacity: 1 !important;
 }   
 
 .gh-head a {
@@ -84,7 +93,7 @@
 }
 
 .gh-head-menu .nav-current a {
-    box-shadow: 0 -1px 0 0 currentcolor inset;
+    /* no underline */
 }
 
 
@@ -204,7 +213,7 @@ body:not(.gh-menu-open) .gh-burger:hover .gh-burger-inner::after {
 }
 .gh-menu-open #gh-head {
     z-index: 900;
-    overflow-y: none;
+    overflow-y: auto;
 }
 
 .gh-menu-open #gh-head .gh-head-menu,
@@ -216,7 +225,6 @@ body:not(.gh-menu-open) .gh-burger:hover .gh-burger-inner::after {
 #gh-head .gh-head-actions {
     display: none;
 }
-
 
 /* Layout Variants
 /* ---------------------------------------------------------- */
@@ -334,27 +342,6 @@ body:not(.gh-menu-open) .gh-burger:hover .gh-burger-inner::after {
     #gh-head .gh-head-actions,
     #gh-head .gh-head-menu {
         display: none;
-    }
-    /* Open the menu */
-    .gh-menu-open {
-        overflow: hidden;
-        height: 100vh;
-    }
-    .gh-menu-open #gh-head {
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        z-index: 900;
-        overflow-y: scroll;
-    }
-    .gh-menu-open #gh-head .gh-head-inner {
-        grid-template-rows: auto 1fr auto;
-    }
-    .gh-menu-open #gh-head .gh-head-actions,
-    .gh-menu-open #gh-head .gh-head-menu {
-        display: flex;
     }
 }
 

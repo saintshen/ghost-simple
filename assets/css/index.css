@@ -3,6 +3,7 @@
 @import "components/forms.css";
 @import "components/buttons.css";
 @import "components/cookie.css";
+@import "gallery.css";
 
 /* Ghost components */
 @import "ghost/header.css";
@@ -419,8 +420,8 @@ html,
 }
 
 .index-gallery-wrapper {
-    height: 80vh;
-    overflow: auto
+    height: 100vh;
+    overflow: hidden;
 }
 
 /* font-awesome icon */
