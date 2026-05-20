@@ -310,7 +310,7 @@ body:not(.gh-menu-open) .gh-burger:hover .gh-burger-inner::after {
     }
     #gh-head .gh-head-menu {
         align-self: center;
-        display: flex;
+        display: none;
         flex-direction: column;
         align-items: center;
         text-align: center;
@@ -331,22 +331,136 @@ body:not(.gh-menu-open) .gh-burger:hover .gh-burger-inner::after {
         align-items: center;
     }
     #gh-head .gh-head-actions {
+        display: none;
         padding: 20px 0;
         justify-content: center;
         text-align: left;
     }
-    #gh-head .gh-head-actions a {
-        margin: 0 10px;
+    #gh-head .gh-head-actions-list {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
     }
-    /* Hide collapsed content */
-    #gh-head .gh-head-actions,
-    #gh-head .gh-head-menu {
+    #gh-head .gh-head-actions a,
+    #gh-head .gh-head-actions button {
+        margin: 0;
+        font-size: 2rem;
+    }
+.gh-menu-open #gh-head.gh-menu-open {
+        position: fixed;
+        inset: 0;
+        height: 100vh !important;
+        background: rgba(245,245,240,0.98);
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 60px;
+    }
+    .gh-menu-open #gh-head {
+        position: fixed;
+        inset: 0;
+        height: 100vh !important;
+        background: rgba(245,245,240,0.98);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 15vh;
+        z-index: 900;
+        overflow: hidden;
+    }
+    .gh-menu-open #gh-head .gh-head-inner {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 0;
+    }
+    .gh-menu-open #gh-head .gh-head-brand {
         display: none;
+    }
+    .gh-menu-open #gh-head .gh-head-menu,
+    .gh-menu-open #gh-head .gh-head-actions {
+        display: flex !important;
+    }
+    .gh-menu-open #gh-head .gh-head-menu {
+        position: static;
+        transform: none;
+        margin: 0;
+        padding: 0;
+        flex-direction: column;
+        align-items: center;
+    }
+    .gh-menu-open #gh-head .gh-head-actions {
+        display: none !important;
+    }
+    .gh-menu-open #gh-head .gh-head-menu .nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .gh-menu-open #gh-head .gh-head-menu .nav li {
+        margin: 0;
+    }
+    .gh-menu-open #gh-head .gh-head-menu .nav a,
+    .gh-menu-open #gh-head .gh-head-menu .nav button,
+    .gh-menu-open #gh-head .nav-search-btn,
+    .gh-menu-open #gh-head .nav-subscribe,
+    .gh-menu-open #gh-head .nav-subscribe a {
+        font-size: 3.2rem;
+        font-weight: 300;
+        line-height: 1.2;
+        padding: 0.15em 0;
+        color: currentcolor;
+        display: block;
+        text-align: center;
+        width: 100%;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        text-decoration: none;
+    }
+    .gh-menu-open #gh-head .nav-search,
+    .gh-menu-open #gh-head .nav-subscribe {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+    .gh-menu-open #gh-head .nav-search-btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        font-size: 3.2rem;
+        font-weight: 300;
+        line-height: 1.2;
+        padding: 0.15em 0;
+        color: currentcolor;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        text-decoration: none;
+    }
+    .gh-menu-open #gh-head .gh-burger {
+        color: currentcolor;
+        position: fixed;
+        top: 4vmin;
+        right: 4vmin;
+        z-index: 9999;
     }
 }
 
 @media (max-width: 600px) {
     #gh-head .gh-head-menu {
         font-size: 6vmin;
+    }
+    #gh-head .gh-head-actions a,
+    #gh-head .gh-head-actions button {
+        font-size: 1.8rem;
     }
 }

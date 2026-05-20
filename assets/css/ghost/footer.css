@@ -10,6 +10,10 @@
 
 .gh-foot .gh-container {
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
 }
 
 .gh-foot a {
@@ -18,7 +22,6 @@
 
 .gh-foot-menu {
     display: flex;
-    margin-left: auto;
     align-items: center;
     justify-content: center;
 }
@@ -52,7 +55,6 @@
     display: flex;
     font-size: 1rem;
     text-align: right;
-    padding-right: 1.5vmin;
     white-space: nowrap;
 }
 

@@ -36,13 +36,37 @@
     :where(.nav, .gh-head-menu) .nav-instagram a::before {content: "\f16d"}
     :where(.nav, .gh-head-menu) .nav-wechat a::before {content: "\f1d7"}
 
-    /* Menu items:统一的文字样式 */
-    .gh-head-actions-list a {
+    
+
+    /* Desktop: all menu items in one row */
+    .gh-head-menu {
+        display: flex;
+        align-items: center;
+        gap: 0;
+    }
+    .gh-head-menu .nav {
+        display: flex;
+        align-items: center;
+    }
+    .gh-head-menu .nav-search,
+    .gh-head-menu .nav-subscribe {
         display: inline-block;
-        padding: 5px 0;
-        margin: 0 0 0 1.5vmin;
-        text-decoration: none;
+    }
+    .gh-head-menu .nav-search a,
+    .gh-head-menu .nav-subscribe a,
+    .gh-head-menu .nav-search-btn {
+        font-size: inherit;
+        padding: 0 1.2rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font: inherit;
         color: inherit;
+        text-decoration: none;
+    }
+    .gh-head-menu .nav-search a::after,
+    .gh-head-menu .nav-subscribe a::after {
+        display: none;
     }
 </style>
 </head>
@@ -63,19 +87,15 @@
 
         <div class="gh-head-menu">
             {{navigation}}
-        </div>
-        <div class="gh-head-actions">
-            <div class="gh-head-actions-list">
-                <a href="/search/">Search</a>
-                {{#if @site.members_enabled}}
-                    {{^if @member}}
-                    <a href="{{@site.signup_url}}">Subscribe</a>
-                    {{else}}
-                    <a href="#/portal/account">Account</a>
-                    {{/if}}
+            {{#if @site.members_enabled}}
+                {{^if @member}}
+                <span class="nav-subscribe"><a href="{{@site.signup_url}}">Subscribe</a></span>
+                {{else}}
+                <span class="nav-subscribe"><a href="#/portal/account">Account</a></span>
                 {{/if}}
+            {{/if}}
+            <button class="nav-search-btn" id="searchToggle" aria-label="Search">Search</button>
             </div>
-        </div>
         <a class="gh-burger" role="button" aria-label="menu">
             <div class="gh-burger-box">
                 <div class="gh-burger-inner"></div>
@@ -105,6 +125,34 @@
 <script>
 window.GHOST_API_KEY = '103e0734bdfde4bf80e37fc477';
 window.GHOST_URL = '{{@site.url}}';
+</script>
+<script>
+// Custom search toggle — opens Ghost's sodo-search modal if available
+document.addEventListener('DOMContentLoaded', function() {
+    var searchToggle = document.getElementById('searchToggle');
+    if (searchToggle) {
+        searchToggle.addEventListener('click', function() {
+            // Try Ghost's built-in search (sodo-search)
+            var ghostSearch = document.querySelector('[data-ghost-search]');
+            if (ghostSearch) {
+                ghostSearch.click();
+                return;
+            }
+            // Fallback: trigger keyboard shortcut Ctrl+K / Cmd+K
+            var event = new KeyboardEvent('keydown', {
+                key: 'k',
+                code: 'KeyK',
+                keyCode: 75,
+                which: 75,
+                bubbles: true,
+                cancelable: true,
+                ctrlKey: true,
+                metaKey: false
+            });
+            document.dispatchEvent(event);
+        });
+    }
+});
 </script>
 {{ghost_foot}}
 
